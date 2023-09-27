@@ -1,22 +1,75 @@
 // Arrays
-const lUpper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-const lLower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-const num = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-const spChar = ["!", "@", "#", "$", "%", "&", "*", "(", ")", "-", "_", "=", "+", ";", ".", "/", ","];
+const letterUpper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+const letterLower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+const specialCharacters = ["!", "@", "#", "$", "%", "&", "*", "(", ")", "-", "_", "=", "+", ";", ".", "/", ","];
 
 
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 let pwArr = [];
-let pwObject = {};
+// let pwObject = {};
 let pw = [];
 
 // Prompt for password length (8-128) || Alert if not valid
-//Prompt for upper case => passwordArray
-//Prompt for lower case => passwordArray
-//Prompt for numbers => passwordArray
-//Prompt for special characters => passwordArray
+// length
+// Prompt for upper case => passwordArray
+// Prompt for lower case => passwordArray
+// Prompt for numbers => passwordArray
+// Prompt for special characters => passwordArray
+
+function generatePassword() {
+
+  let length = window.prompt(`How many characters would you like your password to be? (8-128)`);
+  console.log(length);
+
+  if (length >= 8 && length <= 128) {
+    var uCase = window.confirm(`Do you want it to contain upper case letters?`);
+  } else {
+    window.alert(`Password has to be between 8-128 characters!`);
+    return;
+  }
+  console.log(uCase);
+
+  if (uCase == true) {
+    pwArr = pwArr.concat(letterUpper);
+    console.log(pwArr);
+  }
+
+  var lCase = window.confirm(`Do you want it to contain lower case letters?`)
+  console.log(lCase);
+  if (lCase == true) {
+    pwArr = pwArr.concat(letterLower);
+    console.log(pwArr)
+  }
+
+  var num = window.confirm(`Do you want it to contain numbers?`)
+  console.log(num);
+  if (num == true) {
+    pwArr = pwArr.concat(numbers);
+    console.log(pwArr)
+  }
+
+  var spChar = window.confirm(`Do you want it to contail special characters?`)
+  console.log(spChar);
+  if (spChar == true) {
+    pwArr = pwArr.concat(specialCharacters)
+    console.log(pwArr);
+  }
+
+
+let password = pwArr
+.map(value => ({ value, sort: Math.random() }))
+.sort((a, b) => a.sort - b.sort)
+.map(({ value }) => value)
+console.log(password)
+
+password.length = length
+console.log(password);
+
+}
+
 
 
 // Write password to the #password input
