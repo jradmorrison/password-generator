@@ -9,8 +9,9 @@ const specialCharacters = ["!", "@", "#", "$", "%", "&", "*", "(", ")", "-", "_"
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 let pwArr = [];
-// let pwObject = {};
+let pwObject = {};
 let pw = [];
+
 
 // Prompt for password length (8-128) || Alert if not valid
 // length
@@ -57,17 +58,13 @@ function generatePassword() {
     pwArr = pwArr.concat(specialCharacters)
     console.log(pwArr);
   }
-
-
-let password = pwArr
-.map(value => ({ value, sort: Math.random() }))
-.sort((a, b) => a.sort - b.sort)
-.map(({ value }) => value)
-console.log(password)
-
-password.length = length
-console.log(password);
-
+  
+  // For loop to add characters to [pw]
+  for (let index = 0; index < length; index++) {
+    pw.push(pwArr[Math.floor(Math.random() * pwArr.length)]);
+  }
+  console.log(pw);
+return;
 }
 
 
