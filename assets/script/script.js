@@ -11,8 +11,8 @@ var generateBtn = document.querySelector("#generate");
 let pwArr = [];
 let pwObject = {};
 let pw = [];
-
-
+var finalPass = ""
+var lastPass = ''
 // Prompt for password length (8-128) || Alert if not valid
 // length
 // Prompt for upper case => passwordArray
@@ -64,6 +64,14 @@ function generatePassword() {
     pw.push(pwArr[Math.floor(Math.random() * pwArr.length)]);
   }
   console.log(pw);
+
+  finalPass = ''.concat(pw);
+  console.log(finalPass);
+
+  lastPass = finalPass.replaceAll(',','')
+  console.log(lastPass)
+
+
 return;
 }
 
@@ -71,12 +79,17 @@ return;
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  // var password = 
+  generatePassword();
   var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
+  passwordText.value = lastPass;
 
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+
+
+  
